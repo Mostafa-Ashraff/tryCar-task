@@ -1,23 +1,64 @@
 <script setup>
-
-defineProps({
+import { onMounted, ref } from "vue";
+const props = defineProps({
   title: String,
   imgSrc: String,
   userName: String,
   phoneNumber: String,
-})
-
+});
+let verifiedImgSrc = ref("../assets/not-found.jpg");
+let imgFound = ref(false);
+let loading = ref(false);
+onMounted(async () => {
+// debugger
+  loading.value = true;
+  //checks if the image loaded properly and if so assign the url to the verifiedImgSrc to be displayed later in the template
+  await fetch(props.imgSrc).then((res) => {
+    if (res.ok) {
+      imgFound.value = true;
+      verifiedImgSrc.value = res.url;
+    }
+    loading.value = false;
+  });
+});
 </script>
 
 <template>
-  <h2>{{ userName }}{{ phoneNumber }}</h2>
-  <h4>{{ title }}</h4>
-  <img :src="imgSrc" alt="">
-
+  <v-skeleton-loader
+    v-if="loading"
+    class="mx-auto mt-4 w-100 loading-post"
+    type="article, image"
+    color="grey-darken-3"
+  ></v-skeleton-loader>
+  <div v-else class="post">
+    <div class="user-info">
+      <h2>{{ userName }}</h2>
+      <a :href="`tel:${phoneNumber}`">{{ phoneNumber }}</a>
+    </div>
+    <h5>{{ title }}</h5>
+    <img
+      :src="imgFound ? verifiedImgSrc : '../../public/not-found.jpg'"
+      alt="image for the post"
+    />
+  </div>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+.loading-post{
+  min-width: 100%;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 12px;
+  background-color: #363636;
+  margin-bottom: 16px;
+}
+
+.post img{
+  border-radius: 10px;
 }
 </style>
