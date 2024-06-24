@@ -61,7 +61,7 @@ onMounted(async () => {
 <template>
   <template v-if="errors">
     <v-alert
-      color="red"
+      type="error"
       v-for="error in errors"
       :key="error"
       class="ma-4 t-0"
@@ -83,5 +83,7 @@ onMounted(async () => {
     v-model="pageNumber"
     :length="fullInfoPosts.length / 10"
     @update:modelValue="handlePagination"
+    next-icon="mdi-menu-right"
+    prev-icon="mdi-menu-left"
   ></v-pagination>
 </template>
