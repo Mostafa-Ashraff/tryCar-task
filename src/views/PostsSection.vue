@@ -60,16 +60,25 @@ onMounted(async () => {
 
 <template>
   <template v-if="errors">
-    <v-alert color="red" v-for="error in errors" :key="error" class="ma-4 t-0" :text="error"></v-alert>
+    <v-alert
+      color="red"
+      v-for="error in errors"
+      :key="error"
+      class="ma-4 t-0"
+      :text="error"
+    ></v-alert>
   </template>
-  <Post
-    v-for="post in shownPosts"
-    :key="post.id"
-    :title="post.title"
-    :userName="post.userName"
-    :imgSrc="`https://picsum.photos/600/300/?image=${post.id}`"
-    :phoneNumber="post.userPhone"
-  />
+  <section class="d-flex flex-column justify-center align-center mx-auto">
+    <Post
+      class="m-auto"
+      v-for="post in shownPosts"
+      :key="post.id"
+      :title="post.title"
+      :userName="post.userName"
+      :imgSrc="`https://picsum.photos/600/300/?image=${post.id}`"
+      :phoneNumber="post.userPhone"
+    />
+  </section>
   <v-pagination
     v-model="pageNumber"
     :length="fullInfoPosts.length / 10"

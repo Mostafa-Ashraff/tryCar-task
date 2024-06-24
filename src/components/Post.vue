@@ -55,7 +55,8 @@ onMounted(async () => {
   border-radius: 12px;
   padding: 12px;
   background-color: #363636;
-  margin-bottom: 16px;
+  margin: 0px auto 16px;
+  max-width: 95%;
 }
 
 .post img{
