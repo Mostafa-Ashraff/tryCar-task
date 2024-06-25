@@ -57,7 +57,6 @@ onMounted(async () => {
 
 .loading-post,
 .post {
-  /* min-width: 100%; */
   min-width: 624px;
   max-width: 95%;
 }
