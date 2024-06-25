@@ -10,7 +10,7 @@ let verifiedImgSrc = ref("../assets/not-found.jpg");
 let imgFound = ref(false);
 let loading = ref(false);
 onMounted(async () => {
-// debugger
+  // debugger
   loading.value = true;
   //checks if the image loaded properly and if so assign the url to the verifiedImgSrc to be displayed later in the template
   await fetch(props.imgSrc).then((res) => {
@@ -44,9 +44,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.loading-post{
-  min-width: 100%;
-}
 
 .post {
   display: flex;
@@ -59,7 +56,21 @@ onMounted(async () => {
   max-width: 95%;
 }
 
-.post img{
+.loading-post,
+.post {
+  /* min-width: 100%; */
+  min-width: 600px;
+}
+
+
+@media (max-width: 720px) {
+  .post,
+  .loading-post {
+    min-width: 80%;
+  }
+}
+
+.post img {
   border-radius: 10px;
 }
 </style>

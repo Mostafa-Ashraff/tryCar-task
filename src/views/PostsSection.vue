@@ -80,6 +80,7 @@ onMounted(async () => {
     />
   </section>
   <v-pagination
+  v-if="shownPosts.length>0"
     v-model="pageNumber"
     :length="fullInfoPosts.length / 10"
     @update:modelValue="handlePagination"
