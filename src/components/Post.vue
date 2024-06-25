@@ -53,13 +53,13 @@ onMounted(async () => {
   padding: 12px;
   background-color: #363636;
   margin: 0px auto 16px;
-  max-width: 95%;
 }
 
 .loading-post,
 .post {
   /* min-width: 100%; */
-  min-width: 600px;
+  min-width: 624px;
+  max-width: 95%;
 }
 
 
